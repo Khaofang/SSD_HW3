@@ -34,7 +34,7 @@ public class DrawingBoard extends JPanel {
 			group.add(gObject);
 		}
 		group.recalculateRegion();
-		gObjects.clear();
+		clear();
 		gObjects.add(group);
 		repaint();
 	}
