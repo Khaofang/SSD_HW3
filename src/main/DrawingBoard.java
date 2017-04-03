@@ -103,23 +103,18 @@ public class DrawingBoard extends JPanel {
 			eY = e.getY();
 			atGO = false;
 			
-			for (GObject gObject : target) {
-				if (gObject.pointerHit(eX, eY)) {
-					atGO = true;
-					break;
-				}
-			}
-			
 			for (int i = gObjects.size() - 1; !atGO && i >= 0; i--) {
 				GObject gObject = gObjects.get(i);
 				if (gObject.pointerHit(eX, eY)) {
 					atGO = true;
-					deselectAll();
-					target.clear();
-					gObject.selected();
-					target.add(gObject);
-					repaint();
-					atGO = true;
+					
+					if (!target.contains(gObject)) {
+						deselectAll();
+						target.clear();
+						gObject.selected();
+						target.add(gObject);
+						repaint();
+					}
 					break;
 				}
 			}
